@@ -1,0 +1,44 @@
+services:
+  spring-app:
+    container_name: "portfolio"
+    build:
+      context: .
+    #To debug if there are issues with the built image
+    #image: portfolio
+    ports:
+      - "8080:8080"
+    networks:
+      portfolio:
+    environment:
+      DB_IN_USE: "mindatabas"
+      DB_ADDRESS: database
+      jwt_secret: ${jwt_secret}
+      admin_username: ${admin_username}
+      admin_password: ${admin_password}
+      encoder_salt_length: ${encoder_salt_length}
+      encoder_hash_length: ${encoder_hash_length}
+      encoder_parallelism: ${encoder_parallelism}
+      encoder_memory: ${encoder_memory}
+      encoder_iterations: ${encoder_iterations}
+      db_user: ${db_user}
+      db_user_password: ${db_user_password}
+  database:
+    image: mysql:8.0-debian
+    restart: always
+    container_name: "database"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${db_root_password}
+      MYSQL_DATABASE: "mindatabas"
+      MYSQL_USER: ${db_user}
+      MYSQL_PASSWORD: ${db_user_password}
+    networks:
+      portfolio:
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+networks:
+  portfolio:

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring
+  template:
+    metadata:
+      labels:
+        app: spring
+    spec:
+      containers:
+        - name: portfolio
+          image: portfolio
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: db-secrets
+              readOnly: true
+              mountPath: "/run/db_secrets"
+            - name: spring-specific-secrets
+              readOnly: true
+              mountPath: "/run/spring_secrets"
+          env:
+            - name: DB_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: database-configmap
+                  key: db_address
+            - name: DB_IN_USE
+              valueFrom:
+                configMapKeyRef:
+                  name: database-configmap
+                  key: db_in_use
+      volumes:
+        - name: db-secrets
+          secret:
+            secretName: db-secrets
+        - name: spring-specific-secrets
+          secret:
+            secretName: spring-specific-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-service
+spec:
+  selector:
+    app: spring
+  ports:
+    - port: 8080
+      targetPort: 8080

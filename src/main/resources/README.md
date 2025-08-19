@@ -1,0 +1,1 @@
+Only application.properties is "public", the env variables in this file are set in the docker container when running the network portfolio(see docker-compose.yml). This is done because the springboot container and the database container use the same variables, eg db initialization(db container) and db connection(springboot container).

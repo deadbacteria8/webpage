@@ -1,0 +1,9 @@
+target
+.idea
+**/*.properties
+!**/application.properties
+secrets/**
+**/*.bash
+!set-random-secrets.bash
+**/*.env
+!*template.env
