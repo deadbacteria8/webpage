@@ -4,9 +4,9 @@ The application is currently under the process of continuing the backend API, an
 
 It is a simple portfolio app built with the goal of using security precautions(most likely many vulnerabilities atm).
 
-This is built with an DDD in Springboot(Java).
+This is built with in Springboot(Java).
 
-The application runs can run in a k8 cluster, which is configured in this repository. Commands can be seen in the makefile.
+The application can run in a k8 cluster, which is configured in this repository. Commands can be seen in the makefile.
 With make, you can run the cluster with make start. To know what ip address minikube uses, run minikube ip. With that ip, you can access endpoints from the Spring api.
 Example: curl http://$(minikube ip)/home/getdata
 
