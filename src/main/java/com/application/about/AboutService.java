@@ -16,4 +16,9 @@ public class AboutService {
         About about = new About(shortIntroduction);
         aboutRepository.createAbout(about, username);
     }
+    //If app develops with multiple different portfolio owners, this should have username input to find specific about for specific user
+    //now it will just collect the first one in the db
+    public About getAbout() {
+        return aboutRepository.getFirstAbout();
+    }
 }
