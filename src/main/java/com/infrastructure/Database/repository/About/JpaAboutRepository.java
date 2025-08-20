@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JpaAboutRepository extends JpaRepository<AboutEntity, Long> {
+    AboutEntity findFirstByOrderByIdDesc();
 }
 
 

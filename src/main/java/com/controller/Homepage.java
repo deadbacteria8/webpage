@@ -1,23 +1,24 @@
 package com.controller;
+import com.application.about.AboutService;
+import com.domain.model.About;
 import com.domain.model.FullAbout;
-import com.application.Homepage.AboutDataDistributor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/portfolio")
 public class Homepage {
 
-    private final AboutDataDistributor homePageData;
+    private final AboutService aboutService;
 
-    public Homepage(AboutDataDistributor homePageData) {
-        this.homePageData = homePageData;
+    public Homepage(AboutService aboutService) {
+        this.aboutService = aboutService;
     }
 
-    @GetMapping("/getdata")
-    public String sayHello() {
-        return homePageData.getData();
+    @GetMapping("/about")
+    public About sayHello() {
+        return aboutService.getAbout();
     }
 
 
