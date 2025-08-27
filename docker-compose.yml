@@ -3,6 +3,9 @@ services:
     container_name: "portfolio"
     build:
       context: .
+    depends_on:
+      database:
+        condition: service_healthy
     #To debug if there are issues with the built image
     #image: portfolio
     ports:
@@ -13,7 +16,6 @@ services:
       DB_IN_USE: "mindatabas"
       DB_ADDRESS: database
       jwt_secret: ${jwt_secret}
-      admin_username: ${admin_username}
       admin_password: ${admin_password}
       encoder_salt_length: ${encoder_salt_length}
       encoder_hash_length: ${encoder_hash_length}
@@ -37,7 +39,7 @@ services:
       - "3306:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
-      interval: 10s
+      interval: 3s
       timeout: 5s
       retries: 5
 networks:

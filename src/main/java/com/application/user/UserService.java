@@ -16,12 +16,13 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void createUser(String username, String password) {
+    public Long createUser(String username, String password) {
         if((userRepository.findUser(username)).isPresent()) {
             throw new IllegalStateException("User already exists");
         }
         String secretPassword = passwordEncoder.encode(password);
         User newUser = new User(username,secretPassword,"ADMIN");
-        userRepository.createUser(newUser);
+        //Returns id
+        return userRepository.createUser(newUser);
     }
 }
