@@ -1,8 +1,9 @@
 package com.controller;
-import com.application.about.AboutService;
+import com.application.About.AboutService;
+import com.application.dto.FullAbout;
 import com.domain.model.About;
-import com.domain.model.FullAbout;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +17,9 @@ public class Homepage {
         this.aboutService = aboutService;
     }
 
-    @GetMapping("/about")
-    public About sayHello() {
-        return aboutService.getAbout();
+    @GetMapping("/{username}/about")
+    public FullAbout fullAbout(@PathVariable String username) {
+        return aboutService.getFullAboutByUsername(username);
     }
 
 

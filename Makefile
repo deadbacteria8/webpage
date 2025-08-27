@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 apply:
 	 cp database-secrets-template.env kubernetes/cluster-secrets/database/database.env
 	 cp spring-secrets-template.env kubernetes/cluster-secrets/spring/spring.env
@@ -29,4 +31,7 @@ start:
 	kubectl apply -f kubernetes/ingress/template-ingress-nginx.yml
 
 stop:
-	 minikube delete
+	minikube delete
+
+docker-only:
+	source set-random-secrets.bash && docker compose up -d --build
