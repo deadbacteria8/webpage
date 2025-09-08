@@ -5,6 +5,8 @@ apply:
 	 cp spring-secrets-template.env kubernetes/cluster-secrets/spring/spring.env
 	 kubectl apply -k kubernetes/cluster-secrets/database/
 	 kubectl apply -k kubernetes/cluster-secrets/spring/
+	 rm kubernetes/cluster-secrets/database/database.env
+     rm kubernetes/cluster-secrets/spring/spring.env
 	 kubectl apply -f kubernetes/database
 	 kubectl apply -f kubernetes/spring
 
@@ -15,8 +17,6 @@ delete:
 	 kubectl delete -f kubernetes/database
 	 kubectl delete -k kubernetes/cluster-secrets/spring
 	 kubectl delete -k kubernetes/cluster-secrets/database
-	 rm kubernetes/cluster-secrets/database/database.env
-	 rm kubernetes/cluster-secrets/spring/spring.env
 
 start:
 	docker build -t portfolio .
