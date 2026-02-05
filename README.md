@@ -2,7 +2,7 @@ This repo is under construction.
 
 The application is currently under the process of continuing the backend API, and kubernetes deployment.
 
-It is a portfolio app for multiple users, built with the goal of using security precautions(most likely many vulnerabilities atm).
+It is a portfolio app for multiple users, built with the goal of using security precautions.
 
 This is built with in Springboot(Java).
 
