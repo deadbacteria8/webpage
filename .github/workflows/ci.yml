@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set env vars
+        run: |
+          echo "jwt_secret=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+          echo "db_root_password=${{ secrets.DB_ROOT_PASSWORD }}" >> $GITHUB_ENV
+          echo "db_user=${{ secrets.DB_USER }}" >> $GITHUB_ENV
+          echo "db_user_password=${{ secrets.DB_USER_PASSWORD }}" >> $GITHUB_ENV
+          echo "encoder_salt_length=16" >> $GITHUB_ENV
+          echo "encoder_hash_length=32" >> $GITHUB_ENV
+          echo "encoder_parallelism=1" >> $GITHUB_ENV
+          echo "encoder_memory=65536" >> $GITHUB_ENV
+          echo "encoder_iterations=3" >> $GITHUB_ENV
+
+      - name: Build & run containers
+        run: docker compose up --build -d
+
+      - name: Wait for app
+        run: |
+          for i in {1..30}; do
+            if curl -f http://localhost:8080/swagger-ui/index.html; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
