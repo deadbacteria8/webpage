@@ -1,6 +1,6 @@
 package com.infrastructure.database.entities;
 import jakarta.persistence.*;
-import com.domain.model.User;
+import com.domain.models.User;
 
 @Entity
 public class UserEntity extends EntityBase<User>{

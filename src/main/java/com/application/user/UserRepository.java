@@ -1,6 +1,6 @@
 package com.application.user;
 
-import com.domain.model.User;
+import com.domain.models.User;
 
 import java.util.Optional;
 

@@ -2,9 +2,10 @@ package com.infrastructure.database.projection;
 
 
 import com.application.dto.FullAbout;
+import com.domain.models.About;
+import com.domain.models.Socials;
 import com.infrastructure.database.entities.AboutEntity;
 import com.infrastructure.database.entities.SocialsEntity;
-
 public class AboutAndSocials {
     private AboutEntity aboutEntity;
     private SocialsEntity socialsEntity;
@@ -21,6 +22,8 @@ public class AboutAndSocials {
     }
 
     public FullAbout mapToDto() {
-        return new FullAbout(socialsEntity.mapToDomain(), aboutEntity.mapToDomain());
+        Socials socials = socialsEntity.mapToDomain();
+        About about = aboutEntity.mapToDomain();
+        return new FullAbout(socials, about);
     }
 }

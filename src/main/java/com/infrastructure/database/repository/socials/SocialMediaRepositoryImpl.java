@@ -1,7 +1,7 @@
 package com.infrastructure.database.repository.socials;
 
 import com.application.socials.SocialMediaRepository;
-import com.domain.model.Socials;
+import com.domain.models.Socials;
 import com.infrastructure.database.entities.SocialsEntity;
 import com.infrastructure.database.entities.UserEntity;
 import com.infrastructure.database.repository.user.JpaUserRepository;
@@ -16,6 +16,7 @@ public class SocialMediaRepositoryImpl implements SocialMediaRepository {
         this.jpaSocialsRepository = jpaSocialsRepository;
         this.jpaUserRepository = jpaUserRepository;
     }
+
     public Long createSocials(Socials socials, Long id) {
         UserEntity userEntity = jpaUserRepository.findById(id).get();
         SocialsEntity socialsEntity = new SocialsEntity(socials, userEntity);

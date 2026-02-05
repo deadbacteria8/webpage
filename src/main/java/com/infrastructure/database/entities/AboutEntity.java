@@ -1,5 +1,5 @@
 package com.infrastructure.database.entities;
-import com.domain.model.About;
+import com.domain.models.About;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
