@@ -2,11 +2,11 @@ This repo is under construction.
 
 The application is currently under the process of continuing the backend API, and kubernetes deployment.
 
+Possible through just docker but also in k8s cluster. Various commands can be seen in the Makefile.
+
 It is a portfolio app for multiple users, built with the goal of using security precautions.
 
 This is built with in Springboot(Java).
-
-The application can run in a k8s cluster, which is configured in this repository. Commands can be seen in the makefile.
 With make, you can run the cluster with make start. To know what ip address minikube uses, run minikube ip. With that ip, you can access endpoints from the Spring api.
 Example: curl http://$(minikube ip):8080/portfolio/deadbacteria8/about
 To see endpoints http://$(minikube ip):8080/swagger-ui.html
