@@ -1,7 +1,7 @@
 package com.infrastructure.database.entities;
 
 
-import com.domain.model.Socials;
+import com.domain.models.Socials;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;

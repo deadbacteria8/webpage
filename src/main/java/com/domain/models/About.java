@@ -1,4 +1,4 @@
-package com.domain.model;
+package com.domain.models;
 
 public class About {
     private String shortIntroduction;

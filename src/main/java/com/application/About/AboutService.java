@@ -1,7 +1,7 @@
 package com.application.About;
 
 import com.application.dto.FullAbout;
-import com.domain.model.About;
+import com.domain.models.About;
 import org.springframework.stereotype.Service;
 
 @Service

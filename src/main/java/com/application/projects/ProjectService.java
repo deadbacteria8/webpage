@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ProjectsService {
+public class ProjectService {
 
     private final ProjectRepository projectRepository;
 
-    public ProjectsService(ProjectRepository projectRepository) {
+    public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
     public Long createProject(String title, String projectInformation, Long id) {

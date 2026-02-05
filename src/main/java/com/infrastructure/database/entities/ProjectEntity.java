@@ -1,5 +1,6 @@
 package com.infrastructure.database.entities;
-import com.domain.model.About;
+import com.domain.models.About;
+import com.domain.models.Project;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -8,22 +9,24 @@ import jakarta.persistence.OneToOne;
 import java.util.Set;
 
 @Entity
-public class Projects extends EntityBase<About> {
+public class ProjectEntity extends EntityBase<Project> {
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Set<UserEntity> userEntity;
-
+    private UserEntity owner;
     private String shortIntroduction;
-    public Projects(UserEntity userEntity) {
-
+    private String title;
+    public ProjectEntity(UserEntity owner, Project project) {
+        this.owner= owner;
+        this.shortIntroduction = project.getProjectInformation();
+        this.title = project.getTitle();
     }
 
-    public Projects() {
+    public ProjectEntity() {
     }
 
     @Override
-    public About mapToDomain() {
-        return new About(this.shortIntroduction);
+    public Project mapToDomain() {
+        return new Project(this.shortIntroduction, this.title);
     }
 }

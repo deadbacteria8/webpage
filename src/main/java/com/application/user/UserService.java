@@ -1,10 +1,8 @@
 package com.application.user;
 
-import com.domain.model.User;
+import com.domain.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 
 @Service

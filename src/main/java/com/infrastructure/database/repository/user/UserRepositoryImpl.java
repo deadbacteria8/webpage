@@ -1,7 +1,7 @@
 package com.infrastructure.database.repository.user;
 
 import com.application.user.UserRepository;
-import com.domain.model.User;
+import com.domain.models.User;
 import com.infrastructure.database.entities.UserEntity;
 import org.springframework.stereotype.Repository;
 

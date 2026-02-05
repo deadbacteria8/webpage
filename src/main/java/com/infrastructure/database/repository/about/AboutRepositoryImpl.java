@@ -1,7 +1,7 @@
 package com.infrastructure.database.repository.about;
 
 import com.application.About.AboutRepository;
-import com.domain.model.About;
+import com.domain.models.About;
 import com.application.dto.FullAbout;
 import com.infrastructure.database.entities.AboutEntity;
 import com.infrastructure.database.entities.UserEntity;

@@ -1,7 +1,7 @@
 package com.application.About;
 
 
-import com.domain.model.About;
+import com.domain.models.About;
 import com.application.dto.FullAbout;
 
 public interface AboutRepository {
