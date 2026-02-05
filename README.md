@@ -8,12 +8,13 @@ This is built with in Springboot(Java).
 
 The application can run in a k8s cluster, which is configured in this repository. Commands can be seen in the makefile.
 With make, you can run the cluster with make start. To know what ip address minikube uses, run minikube ip. With that ip, you can access endpoints from the Spring api.
-Example: curl http://$(minikube ip)/portfolio/deadbacteria8/about
+Example: curl http://$(minikube ip):8080/portfolio/deadbacteria8/about
+To see endpoints http://$(minikube ip):8080/swagger-ui.html
 
 The application can also run in just a docker network, by running the docker-compose.yml file.
-Run make only-docker. The application will build, when its built, http://localhost/portfolio/deadbacteria8/about will be accesible.
+Run make only-docker. The application will build, when its built, http://localhost:8080/portfolio/deadbacteria8/about will be accesible.
 
-See http://localhost/portfolio/deadbacteria8/about
+See http://localhost:8080/portfolio/deadbacteria8/about
 
 For kubernetes deployment, have kubectl, minikube, docker and make(for configured commands) installed.
 For only using docker compose. Have docker and bash installed.
