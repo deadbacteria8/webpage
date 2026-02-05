@@ -33,7 +33,7 @@ jobs:
       - name: Wait for app
         run: |
           for i in {1..30}; do
-            if curl -f http://localhost:8080/swagger-ui/index.html; then
+            if curl -f http://localhost:8080/portfolio/deadbacteria8/about; then
               exit 0
             fi
             sleep 2
