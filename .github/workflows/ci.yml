@@ -27,6 +27,9 @@ jobs:
           echo "encoder_memory=65536" >> $GITHUB_ENV
           echo "encoder_iterations=3" >> $GITHUB_ENV
 
+      - name: Run unit tests
+        run: mvn clean test
+
       - name: Build & run containers
         run: docker compose up --build -d
 
