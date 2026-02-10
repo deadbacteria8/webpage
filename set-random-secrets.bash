@@ -1,6 +1,5 @@
 
-# JWT
-export jwt_secret="c3ByaW5nX2Jvb3RfYXBwQGxvY2FsaG9zdDo4MDgwCg=="
+export jwt_secret="Q2hhdEdQVC1zZWN1cmUtYW5kLXN0cm9uZy1rZXktMTIzNA=="
 
 # HikariCP settings
 

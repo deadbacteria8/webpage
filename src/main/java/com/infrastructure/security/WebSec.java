@@ -20,7 +20,7 @@ public class WebSec {
         http
                 .securityMatcher("/admin/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/dashboard/**").hasAuthority("ADMIN")
+                        .anyRequest().hasAuthority("ADMIN")
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
