@@ -14,7 +14,7 @@ To see endpoints http://$(minikube ip):8080/swagger-ui.html
 The application can also run in just a docker network, by running the docker-compose.yml file.
 Run make only-docker. The application will build, when its built, http://localhost:8080/portfolio/deadbacteria8/about will be accesible.
 
-See http://localhost:8080/portfolio/deadbacteria8/about
+See all completed endpoints http://localhost:8080/swagger-ui.html. Some functionality is accesible in code but not added as completed endpoints in the rest api.
 
 For kubernetes deployment, have kubectl, minikube, docker and make(for configured commands) installed.
 For only using docker compose. Have docker and bash installed.
