@@ -1,17 +1,11 @@
 package com.infrastructure.database.entities;
-import com.domain.models.About;
 import com.domain.models.Project;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-
-import java.util.Set;
+import jakarta.persistence.*;
 
 @Entity
 public class ProjectEntity extends EntityBase<Project> {
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity owner;
     private String shortIntroduction;

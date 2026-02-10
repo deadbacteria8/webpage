@@ -11,14 +11,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProjectRepositoryImpl implements ProjectRepository {
     private final JpaUserRepository jpaUserRepository;
-    public ProjectRepositoryImpl(JpaUserRepository jpaUserRepository) {
+    private final JpaProjectRepository jpaProjectRepository;
+    public ProjectRepositoryImpl(JpaUserRepository jpaUserRepository, JpaProjectRepository jpaProjectRepository) {
         this.jpaUserRepository = jpaUserRepository;
+        this.jpaProjectRepository = jpaProjectRepository;
     }
     @Override
     public Long createProject(Project project, Long id) {
         UserEntity user = jpaUserRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         ProjectEntity projectEntity = new ProjectEntity(user, project);
+        jpaProjectRepository.save(projectEntity);
         return projectEntity.getId();
     }
 }
