@@ -12,6 +12,10 @@ public class ProjectEntity extends EntityBase<Project> {
     private String title;
     public ProjectEntity(UserEntity owner, Project project) {
         this.owner= owner;
+        setProjectAttributes(project);
+    }
+
+    public void setProjectAttributes(Project project) {
         this.shortIntroduction = project.getProjectInformation();
         this.title = project.getTitle();
     }
@@ -21,6 +25,6 @@ public class ProjectEntity extends EntityBase<Project> {
 
     @Override
     public Project mapToDomain() {
-        return new Project(this.shortIntroduction, this.title);
+        return new Project(this.shortIntroduction, this.title, this.owner.getId());
     }
 }

@@ -1,6 +1,7 @@
 package com.controller;
 import com.application.login.LoginService;
 import com.controller.requestData.LoginRequest;
+import com.controller.returnData.Token;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,8 @@ public class LoginController {
         this.loginService = loginService;
     }
     @PostMapping("/login")
-    public String adminLogin(@RequestBody LoginRequest loginRequest) {
-        return loginService.login(loginRequest.username(), loginRequest.password());
+    public Token adminLogin(@RequestBody LoginRequest loginRequest) {
+        return new Token(loginService.login(loginRequest.username(), loginRequest.password()));
     }
 
 }

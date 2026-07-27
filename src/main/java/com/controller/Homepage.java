@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/portfolio")
 public class Homepage {
-
     private final AboutService aboutService;
 
     public Homepage(AboutService aboutService) {

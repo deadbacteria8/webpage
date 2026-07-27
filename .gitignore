@@ -5,3 +5,4 @@ target
 !set-random-secrets.bash
 **/*.env
 !*template.env
+**/node_modules
