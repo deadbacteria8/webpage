@@ -35,6 +35,7 @@ services:
       MYSQL_PASSWORD: ${db_user_password}
     networks:
       portfolio:
+    #3307 local port because 3306 is often used by a running db.
     ports:
       - "3307:3306"
     healthcheck:
@@ -42,5 +43,15 @@ services:
       interval: 3s
       timeout: 5s
       retries: 5
+  react:
+    build:
+      context: react-router/
+    environment:
+      BACKEND_URL: http://spring-app:8080
+    ports:
+      - "5173:5173"
+    networks:
+      portfolio:
+
 networks:
   portfolio:

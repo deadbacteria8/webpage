@@ -20,22 +20,36 @@ public class JwtFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
-        String token = authHeader.substring(7);
-        String username = jwtService.extractUsername(token);
-        UserDetails user = userInfoService.loadUserByUsername(username);
-        boolean validateToken = jwtService.validateToken(token, user.getUsername());
-        if(!validateToken) {
-            throw new BadCredentialsException("Invalid JWT token");
-        }
-
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                user,
-                null,
-                user.getAuthorities());
+        UsernamePasswordAuthenticationToken authToken = createAuthToken(request);
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authToken);
         filterChain.doFilter(request, response);
+    }
+
+    private UsernamePasswordAuthenticationToken createAuthToken(HttpServletRequest request) {
+        try {
+            String authHeader = request.getHeader("Authorization");
+            String token = authHeader.substring(7);
+            String username = jwtService.extractUsername(token);
+            UserDetails user = userInfoService.loadUserByUsername(username);
+
+            if (jwtService.isTokenExpired(token)) {
+                throw new BadCredentialsException("Invalid JWT token");
+            }
+
+            return new UsernamePasswordAuthenticationToken(
+                    user,
+                    null,
+                    user.getAuthorities()
+            );
+
+        } catch (Exception ex) {
+            //this is a user without anything obviously+
+            return new UsernamePasswordAuthenticationToken(
+                    null,
+                    null,
+                    null);
+        }
     }
 
 }

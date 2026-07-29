@@ -17,11 +17,22 @@ public class ProjectRepositoryImpl implements ProjectRepository {
         this.jpaProjectRepository = jpaProjectRepository;
     }
     @Override
-    public Long createProject(Project project, Long id) {
-        UserEntity user = jpaUserRepository.findById(id)
+    public Long createProject(Project project) {
+        UserEntity user = jpaUserRepository.findById(project.getUserOwningProject())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         ProjectEntity projectEntity = new ProjectEntity(user, project);
         jpaProjectRepository.save(projectEntity);
         return projectEntity.getId();
+    }
+
+    public void updateProject(Project project, Long projectId) {
+        ProjectEntity projectEntity = jpaProjectRepository.findById(projectId)
+                .orElseThrow(() -> new EntityNotFoundException("Project not found"));
+        projectEntity.setProjectAttributes(project);
+    }
+
+    public Project getProjectFromId(Long projectId) {
+        return jpaProjectRepository.findById(projectId).map(ProjectEntity::mapToDomain)
+                .orElseThrow(() -> new EntityNotFoundException("Project not found"));
     }
 }

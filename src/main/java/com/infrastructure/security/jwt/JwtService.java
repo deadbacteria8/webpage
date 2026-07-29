@@ -59,7 +59,7 @@ public class JwtService implements TokenGenerator {
                 .getBody();
     }
 
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
         Instant now = time.now();
         return extractExpiration(token).before(Date.from(now));
     }
