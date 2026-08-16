@@ -40,7 +40,7 @@ export default defineConfig({
 
   webServer: {
     command: 'npm run dev',
-    cwd: 'react-router',
+    cwd: '../react-router',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
   },
