@@ -10,7 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './playwright',
+  testDir: './tests',
 
   fullyParallel: true,
 
@@ -40,7 +40,7 @@ export default defineConfig({
 
   webServer: {
     command: 'npm run dev',
-    cwd: 'react-router',
+    cwd: '../react-router',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
   },
