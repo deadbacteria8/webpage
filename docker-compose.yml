@@ -6,10 +6,8 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    #To debug if there are issues with the built image
-    #image: portfolio
     ports:
-      - "8080:8080"
+      - "8000:8000"
     networks:
       portfolio:
     environment:
@@ -47,9 +45,9 @@ services:
     build:
       context: react-router/
     environment:
-      BACKEND_URL: http://spring-app:8080
+      BACKEND_URL: http://spring-app:8000
     ports:
-      - "5173:5173"
+      - "8080:8080"
     networks:
       portfolio:
 
